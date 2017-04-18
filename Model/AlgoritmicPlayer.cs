@@ -66,7 +66,18 @@ namespace connect_4_ai.Model
                     }
                     break;
                 case -1:
-                    scores[colReference] += (-1.0 / level);
+                    if (level == 2)
+                    {
+                        if (col != colReference)
+                        {
+                            scores[col] += double.MaxValue / board.columns;
+                        }
+                        else
+                        {
+                            scores[colReference] += -1 * double.MaxValue / board.columns;
+                        }
+                    }
+                    scores[colReference] += (-1.0 / (level));
                     break;
                 default:
                     if (level < maxDepth)

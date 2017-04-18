@@ -4,3 +4,9 @@ C:\Users\Santi\UTN\Inteligecia Artificial\connect-4-ai\connect-4-ai\bin\Debug\co
 C:\Users\Santi\UTN\Inteligecia Artificial\connect-4-ai\connect-4-ai\obj\Debug\connect-4-ai.csprojResolveAssemblyReference.cache
 C:\Users\Santi\UTN\Inteligecia Artificial\connect-4-ai\connect-4-ai\obj\Debug\connect-4-ai.exe
 C:\Users\Santi\UTN\Inteligecia Artificial\connect-4-ai\connect-4-ai\obj\Debug\connect-4-ai.pdb
+C:\Users\Santi\UTN\Inteligecia Artificial\connect-4-ai\bin\Debug\connect-4-ai.exe.config
+C:\Users\Santi\UTN\Inteligecia Artificial\connect-4-ai\obj\Debug\connect-4-ai.exe
+C:\Users\Santi\UTN\Inteligecia Artificial\connect-4-ai\obj\Debug\connect-4-ai.pdb
+C:\Users\Santi\UTN\Inteligecia Artificial\connect-4-ai\bin\Debug\connect-4-ai.exe
+C:\Users\Santi\UTN\Inteligecia Artificial\connect-4-ai\bin\Debug\connect-4-ai.pdb
+C:\Users\Santi\UTN\Inteligecia Artificial\connect-4-ai\obj\Debug\connect-4-ai.csprojResolveAssemblyReference.cache

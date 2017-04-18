@@ -15,6 +15,9 @@ namespace connect_4_ai
             while (!exit)
             {
                 Board board = new Board(7, 6);
+                Board[] lastBorads = new Board[2];
+                lastBorads[0] = board.clone();
+                string key;
                 Player player = new AlgoritmicPlayer();
                 bool hasError = false;
                 int winner = 0;
@@ -22,12 +25,21 @@ namespace connect_4_ai
                 Console.Clear();
                 while (winner == 0)
                 {
+                    lastBorads[1] = lastBorads[0];
+                    lastBorads[0] = board.clone();
                     Console.WriteLine(board.getStringBoard());
-                    Console.Write(getPrompt(hasError));
+                    key = getKey(hasError, true);
+                    if(key.ToUpper() == "B")
+                    {
+                        board = lastBorads[1];
+                        Console.Clear();
+                        Console.WriteLine(board.getStringBoard());
+                        key = getKey(hasError, false);
+                    }
                     try
                     {
                         // Human Turn
-                        board.selectColumn(Int32.Parse(Console.ReadKey().KeyChar.ToString())-1,-1);
+                        board.selectColumn(Int32.Parse(key)-1,-1);
                         winner = GameRules.connect4Done(board);
                         if (winner != 0)
                         {
@@ -44,8 +56,18 @@ namespace connect_4_ai
                         winner = GameRules.connect4Done(board);
                         if (winner != 0)
                         {
-                            exit = endGame(winner, board);
-                            break;
+                            Console.Clear();
+                            Console.WriteLine(board.getStringBoard());
+                            Console.Write("Has perdido.\nDesea regresar un turno (Y/N): ");
+                            if (Console.ReadKey().KeyChar.ToString().ToUpper() == "Y")
+                            {
+                                board = lastBorads[0];
+                                winner = 0;
+                            } else
+                            {
+                                exit = endGame(winner, board);
+                                break;
+                            }
                         }
                         hasError = false;
                     }
@@ -58,16 +80,17 @@ namespace connect_4_ai
             }
         }
 
-        static private string getPrompt(bool hasError)
+        static private string getKey(bool hasError, bool getBackwards)
         {
             if (!hasError)
             {
-                return "Ficha O - Ingrese columna: ";
+                Console.Write("Ficha O - Ingrese " + (getBackwards ? "'B' para retroceder o indique " : "") + "columna: ");
             }
             else
             {
-                return "No puede ingresar esa columna, ingrese columna nuevamente: ";
+                Console.Write("No puede ingresar esa columna, ingrese " + (getBackwards ? "'B' para retroceder o indique " : "") + "columna nuevamente: ");
             }
+            return Console.ReadKey().KeyChar.ToString();
         }
 
         static private bool endGame(int winner, Board board)
@@ -77,5 +100,6 @@ namespace connect_4_ai
             Console.Write((winner == 1 ? "Has perdido." : "Has ganado.") + "\nDesea jugar nuevamente (Y/N):");
             return Console.ReadKey().KeyChar.ToString().ToUpper() != "Y";
         }
+
     }
 }
