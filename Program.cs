@@ -15,8 +15,8 @@ namespace connect_4_ai
             while (!exit)
             {
                 Board board = new Board(7, 6);
-                Board[] lastBorads = new Board[2];
-                lastBorads[0] = board.clone();
+                Board[] lastBoards = new Board[2];
+                lastBoards[0] = board.clone();
                 string key;
                 Player player = new AlgoritmicPlayer();
                 bool hasError = false;
@@ -25,13 +25,13 @@ namespace connect_4_ai
                 Console.Clear();
                 while (winner == 0)
                 {
-                    lastBorads[1] = lastBorads[0];
-                    lastBorads[0] = board.clone();
+                    lastBoards[1] = lastBoards[0];
+                    lastBoards[0] = board.clone();
                     Console.WriteLine(board.getStringBoard());
                     key = getKey(hasError, true);
                     if(key.ToUpper() == "B")
                     {
-                        board = lastBorads[1];
+                        board = lastBoards[1];
                         Console.Clear();
                         Console.WriteLine(board.getStringBoard());
                         key = getKey(hasError, false);
@@ -61,7 +61,7 @@ namespace connect_4_ai
                             Console.Write("Has perdido.\nDesea regresar un turno (Y/N): ");
                             if (Console.ReadKey().KeyChar.ToString().ToUpper() == "Y")
                             {
-                                board = lastBorads[0];
+                                board = lastBoards[0];
                                 winner = 0;
                             } else
                             {
