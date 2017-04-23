@@ -10,12 +10,12 @@ A cada celda de la matriz 7x6 le asignaremos un número identificador, de la sig
 
 ​| C1 | C2 | C3 | C4 | C5 | C6 | C7
 --- | --- | --- | --- | --- | --- | --- | ---
-**R6** | 36 | 37 | 38 | 39 | 40 | 41 | 42
-**R5** |  29 | 30 | 31 | 32 | 33 | 34 | 35
-**R4** | 22 | 23 | 24 | 25 | 26 | 27 | 28
-**R3** | 15 | 16 | 17 | 18 | 19 | 20 | 21
-**R2** | 8 | 9 | 10 | 11 | 12 | 13 | 14
 **R1** | 1 | 2 | 3 | 4 | 5 | 6 | 7
+**R2** | 8 | 9 | 10 | 11 | 12 | 13 | 14
+**R3** | 15 | 16 | 17 | 18 | 19 | 20 | 21
+**R4** | 22 | 23 | 24 | 25 | 26 | 27 | 28
+**R5** | 29 | 30 | 31 | 32 | 33 | 34 | 35
+**R6** | 36 | 37 | 38 | 39 | 40 | 41 | 42
 
 Cada celda puede encontrarse en uno de tres estados:
 
@@ -31,16 +31,16 @@ Por ejemplo, si el estado del tablero es:
 
 ​| C1 | C2 | C3 | C4 | C5 | C6 | C7
 --- | --- | --- | --- | --- | --- | --- | ---
-**R6** |  |  | |  |  |  | 
-**R5** |  |  | | X |  |  | 
-**R4** |  |  |  | X | X  | O | 
-**R3** |  |  |  | O | O | X | 
-**R2** |  |  |  | O | X | O | 
-**R1** |  |  | X | O | O | X |
+**R1** |  |  | |  |  |  | 
+**R2** |  |  | | X |  |  | 
+**R3** |  |  |  | X | X  | O | 
+**R4** |  |  |  | O | O | X | 
+**R5** |  |  |  | O | X | O | 
+**R6** |  |  | X | O | O | X |
 
 El registro o fila que representa su estado en formato `CSV` es:
 
-`0, 0, 1, -1, -1, 1, 0, 0, 0, 0, -1, 1, -1, 0, 0, 0, 0, -1, -1, 1, 0, 0, 0, 0, 1, 1, -1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0`
+`0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, -1, 0, 0, 0, 0, -1, -1, 1, 0, 0, 0, 0, -1, 1, -1, 0, 0, 0, 1, -1, -1, 1, 0`
 
 ## Entrenamiento
 
@@ -50,7 +50,7 @@ Al registro del estado del tablero le añadimos una columna que representa la ju
 
 Siguiendo el ejemplo anterior, si el experto determina que la mejor jugada es la columna 3, el registro queda:
 
-`0, 0, 1, -1, -1, 1, 0, 0, 0, 0, -1, 1, -1, 0, 0, 0, 0, -1, -1, 1, 0, 0, 0, 0, 1, 1, -1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3`
+`0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, -1, 0, 0, 0, 0, -1, -1, 1, 0, 0, 0, 0, -1, 1, -1, 0, 0, 0, 1, -1, -1, 1, 0, 3`
 
 ### Referencias
 
