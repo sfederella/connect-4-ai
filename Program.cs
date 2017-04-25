@@ -44,7 +44,6 @@ namespace connect_4_ai
                         if (winner != 0)
                         {
                             Console.Clear();
-                            Console.WriteLine("Human Turn");
                             exit = endGame(winner, board);
                             break;
                         }
@@ -59,20 +58,10 @@ namespace connect_4_ai
                         if (winner != 0)
                         {
                             Console.Clear();
-                            Console.WriteLine(board.getStringBoard());
-                            Console.Write("Has perdido.\nDesea regresar un turno (Y/N): ");
-                            if (Console.ReadKey().KeyChar.ToString().ToUpper() == "Y")
-                            {
-                                board = lastBoards[0];
-                                winner = 0;
-                            } else
-                            {
-                                Console.Clear();
-                                Console.WriteLine("Player Turn");
-                                exit = endGame(winner, board);
-                                break;
-                            }
+                            exit = endGame(winner, board);
+                            break;
                         }
+
                         hasError = false;
                     }
                     catch (Exception e)

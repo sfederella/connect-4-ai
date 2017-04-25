@@ -22,24 +22,27 @@ namespace connect_4_ai.Model
 
         private int getBestRatedCol()
         {
-            int col = 0;
-            bool allTheSame = true;
+            double maxValue = scores.Max();
+            List<int> maxIndexes = new List<int>();
             for (int i=0; i < scores.Length; i++)
             {
-                if (scores[i] > scores[col]) col = i;
-                if (scores[i] != scores[col]) allTheSame = false;
+                if (scores[i]==maxValue)
+                {
+                    maxIndexes.Add(i);
+                }
             }
-            if (allTheSame)
+            if(maxIndexes.Count == 1)
             {
-                return new Random().Next(0,6);
+                return maxIndexes[0];
+            } else
+            {
+                return maxIndexes[new Random().Next(0, maxIndexes.Count)];
             }
-
-            return col;
         }
 
         private void rateColumns(Board board)
         {
-            int maxDepth = 6;
+            int maxDepth = 8;
             for (int col = 0; col < board.columns; col++)
             {
                 if (board.colHasSpace(col))

@@ -81,11 +81,14 @@ namespace connect_4_ai.Model
                 else if (indexRepetitionMax < repetitionMaxOffset) { indexRepetitionMax++; }
                 else { maxOffset--; }
 
+                countNext = 0;
                 for (int offset = 1; offset <= maxOffset; offset++)
                 {
                     col = startCol + offset;
                     row = startRow - offset;
-                    if (lastVal == board.getVal(col, row) && lastVal != 0) { countNext++; }
+                    if (lastVal == board.getVal(col, row) && lastVal != 0) {
+                        countNext++;
+                    }
                     else { countNext = 0; }
                     lastVal = board.getVal(col, row);
                     if (countNext == 3) return lastVal;
@@ -110,11 +113,14 @@ namespace connect_4_ai.Model
                 else if (indexRepetitionMax < repetitionMaxOffset) { indexRepetitionMax++; }
                 else { maxOffset--; }
 
+                countNext = 0;
                 for (int offset = 1; offset <= maxOffset; offset++)
                 {
                     col = startCol - offset;
                     row = startRow - offset;
-                    if (lastVal == board.getVal(col, row) && lastVal != 0) { countNext++; }
+                    if (lastVal == board.getVal(col, row) && lastVal != 0) {
+                        countNext++;
+                    }
                     else { countNext = 0; }
                     lastVal = board.getVal(col, row);
                     if (countNext == 3) return lastVal;
