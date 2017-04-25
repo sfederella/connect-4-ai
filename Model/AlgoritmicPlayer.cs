@@ -77,7 +77,7 @@ namespace connect_4_ai.Model
                             scores[colReference] += -1 * double.MaxValue / board.columns;
                         }
                     }
-                    scores[colReference] += (-1.0 / (level));
+                    scores[colReference] += (-1.0 / Math.Pow(level,2));
                     break;
                 default:
                     if (level < maxDepth)

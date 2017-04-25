@@ -43,6 +43,8 @@ namespace connect_4_ai
                         winner = GameRules.connect4Done(board);
                         if (winner != 0)
                         {
+                            Console.Clear();
+                            Console.WriteLine("Human Turn");
                             exit = endGame(winner, board);
                             break;
                         }
@@ -65,6 +67,8 @@ namespace connect_4_ai
                                 winner = 0;
                             } else
                             {
+                                Console.Clear();
+                                Console.WriteLine("Player Turn");
                                 exit = endGame(winner, board);
                                 break;
                             }
@@ -95,7 +99,6 @@ namespace connect_4_ai
 
         static private bool endGame(int winner, Board board)
         {
-            Console.Clear();
             Console.WriteLine(board.getStringBoard());
             Console.Write((winner == 1 ? "Has perdido." : "Has ganado.") + "\nDesea jugar nuevamente (Y/N):");
             return Console.ReadKey().KeyChar.ToString().ToUpper() != "Y";
