@@ -9,27 +9,40 @@ namespace connect_4_ai
 {
     class Program
     {
+        /* ---- Parameters ---- */
+
+        // Board: Complete with 1 or -1 (player 1 always starts)
+        static Board board = new Board(new int[,] {
+            { 0, 0, 0, 0, 0, 0 }, //1
+            { 0, 0, 0, 0, 0, 0 }, //2
+            { 0, 0, 0, 0, 0, 0 }, //3
+            { 0, 0, 0, 0, 0,-1 }, //4
+            { 0, 0, 0, 0, 0, 1 }, //5
+            { 0, 0, 0, 0, 0, 0 }, //6
+            { 0, 0, 0, 0, 0, 0 }  //7
+        });
+
+        // Number of games that will be played
+        static int numGames = 2;
+
+        // Path of the CSV file where the results will be saved
+        static string datasetPath = "C:/Users/Santi/UTN/Inteligecia Artificial/connect-4-ai/Datasets/dataset.csv";
+
+
+        /* ---- Program ---- */
         static void Main(string[] args)
         {
-            bool exit = false;
-            while (!exit)
-            {
-                Board board = new Board(7, 6);
-                Player player1 = new AlgoritmicPlayer(6);
-                Player player2 = new AlgoritmicPlayer(6);
-                Players players = new Players(player1, player2);
-                Game game = new Game(board, players);
-
-                Console.Clear();
-                Console.WriteLine(board.getStringBoard());
-                Console.Write("Ingrese cantidad de partidas: ");
-                int times = Int32.Parse(Console.ReadKey().KeyChar.ToString());
-
-                game.play(times);
-
-                Console.Write("Desea jugar nuevamente (Y/N): ");
-                exit = Console.ReadKey().KeyChar.ToString().ToUpper() != "Y";
-            }
+            Player player1 = new AlgoritmicPlayer(6);
+            Player player2 = new AlgoritmicPlayer(6);
+            Players players = new Players(player1, player2);
+            Game game = new Game(board, players);
+            game.setResultsPath(datasetPath);
+            Console.WriteLine(board.getStringBoard());
+            Console.Write("Partidas: " + numGames + " \nPresione una tecla para continuar...");
+            Console.ReadKey();
+            game.play(numGames);
+            Console.Write("Juego finalizado. Presione una tecla para continuar...");
+            Console.ReadKey();
         }
 
     }

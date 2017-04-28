@@ -26,11 +26,11 @@ namespace connect_4_ai.Model
             }
         }
 
-        public Board(int columns, int rows, int[,] boardMatrix)
+        public Board(int[,] boardMatrix)
         {
-            this.columns = columns;
-            this.rows = rows;
             this.boardMatrix = (int[,]) boardMatrix.Clone();
+            columns = boardMatrix.GetLength(0);
+            rows = boardMatrix.GetLength(1);
         }
 
         public int getVal(int col, int row)
@@ -69,6 +69,20 @@ namespace connect_4_ai.Model
             return boardStr;
         }
 
+        public string getCSV(Player player)
+        {
+            int playerNum = player.getPlayerNum();
+            string csv = "";
+            for (int col = 0; col < columns; col++)
+            {
+                for (int row = 0; row < rows; row++)
+                {
+                    csv += "," + (boardMatrix[col, row] * playerNum);
+                }
+            }
+            return csv.Substring(1);
+        } 
+
         public void selectColumn(int col, int player)
         {
             for (int row = rows-1; row >= 0; row--) {
@@ -104,7 +118,7 @@ namespace connect_4_ai.Model
 
         public Board clone()
         {
-            return new Board(columns, rows, boardMatrix);
+            return new Board(boardMatrix);
         }
 
 

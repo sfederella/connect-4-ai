@@ -15,6 +15,7 @@ namespace connect_4_ai.Model
         public AlgoritmicPlayer(int maxDepth)
         {
             this.maxDepth = maxDepth;
+            playerNum = 1;
         }
 
         public int getPlayerNum()
