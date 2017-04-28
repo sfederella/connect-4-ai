@@ -9,11 +9,27 @@ namespace connect_4_ai.Model
     class AlgoritmicPlayer : Player
     {
         double[] scores;
+        int playerNum;
+        int maxDepth;
 
-        public AlgoritmicPlayer() { }
+        public AlgoritmicPlayer(int maxDepth)
+        {
+            this.maxDepth = maxDepth;
+        }
+
+        public int getPlayerNum()
+        {
+            return playerNum;
+        }
+
+        public void setPlayerNum(int playerNum)
+        {
+            this.playerNum = playerNum;
+        }
 
         public int getSelectedCol(Board board)
         {
+            Console.Write("Pensando...");
             scores = new double[board.columns];
             for(var i=0; i< scores.Length; i++) { scores[i] = 0; }
             rateColumns(board);
@@ -42,12 +58,11 @@ namespace connect_4_ai.Model
 
         private void rateColumns(Board board)
         {
-            int maxDepth = 8;
             for (int col = 0; col < board.columns; col++)
             {
                 if (board.colHasSpace(col))
                 {
-                    rateColumn(col, board.clone(), 1, col, 1, maxDepth);
+                    rateColumn(col, board.clone(), playerNum, col, 1, maxDepth);
                 }
                 else
                 {
@@ -56,44 +71,45 @@ namespace connect_4_ai.Model
             }
         }
 
-        private void rateColumn(int col, Board board, int player, int colReference, int level, int maxDepth)
+        private void rateColumn(int col, Board board, int nroPlayerTurn, int colReference, int level, int maxDepth)
         {
-            board.selectColumn(col, player);
-            int winner = GameRules.connect4Done(board);
-            switch (winner)
+            board.selectColumn(col, nroPlayerTurn);
+            int winner = board.getStatus();
+            if(winner == 0)
             {
-                case 1:
-                    if (level == 1)
+                if (level < maxDepth)
+                {
+                    for (int subcol = 0; subcol < board.columns; subcol++)
                     {
-                        scores[colReference] = double.MaxValue;
-                    }
-                    break;
-                case -1:
-                    if (level == 2)
-                    {
-                        if (col != colReference)
+                        if (board.colHasSpace(subcol))
                         {
-                            scores[col] += double.MaxValue / board.columns;
-                        }
-                        else
-                        {
-                            scores[colReference] += -1 * double.MaxValue / board.columns;
+                            rateColumn(subcol, board.clone(), nroPlayerTurn * -1, colReference, level + 1, maxDepth);
                         }
                     }
-                    scores[colReference] += (-1.0 / Math.Pow(level,2));
-                    break;
-                default:
-                    if (level < maxDepth)
+                }
+            }
+            else if (winner == playerNum)
+            {
+                if (level == 1)
+                {
+                    scores[colReference] = double.MaxValue;
+                }
+
+            }
+            else
+            {
+                if (level == 2)
+                {
+                    if (col != colReference)
                     {
-                        for (int subcol = 0; subcol < board.columns; subcol++)
-                        {
-                            if (board.colHasSpace(subcol))
-                            {
-                                rateColumn(subcol, board.clone(), player * -1, colReference, level + 1, maxDepth);
-                            }
-                        }
+                        scores[col] += double.MaxValue / board.columns;
                     }
-                    break;
+                    else
+                    {
+                        scores[colReference] += -1 * double.MaxValue / board.columns;
+                    }
+                }
+                scores[colReference] += (-1.0 / Math.Pow(level, 2));
             }
         }
 

@@ -15,82 +15,21 @@ namespace connect_4_ai
             while (!exit)
             {
                 Board board = new Board(7, 6);
-                Board[] lastBoards = new Board[2];
-                lastBoards[0] = board.clone();
-                string key;
-                Player player = new AlgoritmicPlayer();
-                bool hasError = false;
-                int winner = 0;
+                Player player1 = new AlgoritmicPlayer(6);
+                Player player2 = new AlgoritmicPlayer(6);
+                Players players = new Players(player1, player2);
+                Game game = new Game(board, players);
 
                 Console.Clear();
-                while (winner == 0)
-                {
-                    lastBoards[1] = lastBoards[0];
-                    lastBoards[0] = board.clone();
-                    Console.WriteLine(board.getStringBoard());
-                    key = getKey(hasError, true);
-                    if(key.ToUpper() == "B")
-                    {
-                        board = lastBoards[1];
-                        Console.Clear();
-                        Console.WriteLine(board.getStringBoard());
-                        key = getKey(hasError, false);
-                    }
-                    try
-                    {
-                        // Human Turn
-                        board.selectColumn(Int32.Parse(key)-1,-1);
-                        winner = GameRules.connect4Done(board);
-                        if (winner != 0)
-                        {
-                            Console.Clear();
-                            exit = endGame(winner, board);
-                            break;
-                        }
+                Console.WriteLine(board.getStringBoard());
+                Console.Write("Ingrese cantidad de partidas: ");
+                int times = Int32.Parse(Console.ReadKey().KeyChar.ToString());
 
-                        Console.Clear();
-                        Console.WriteLine(board.getStringBoard());
-                        Console.Write("Pensando...");
+                game.play(times);
 
-                        // Player Turn
-                        board.selectColumn(player.getSelectedCol(board.clone()), 1);
-                        winner = GameRules.connect4Done(board);
-                        if (winner != 0)
-                        {
-                            Console.Clear();
-                            exit = endGame(winner, board);
-                            break;
-                        }
-
-                        hasError = false;
-                    }
-                    catch (Exception e)
-                    {
-                        hasError = true;
-                    }
-                    Console.Clear();
-                }
+                Console.Write("Desea jugar nuevamente (Y/N): ");
+                exit = Console.ReadKey().KeyChar.ToString().ToUpper() != "Y";
             }
-        }
-
-        static private string getKey(bool hasError, bool getBackwards)
-        {
-            if (!hasError)
-            {
-                Console.Write("Ficha O - Ingrese " + (getBackwards ? "'B' para retroceder o indique " : "") + "columna: ");
-            }
-            else
-            {
-                Console.Write("No puede ingresar esa columna, ingrese " + (getBackwards ? "'B' para retroceder o indique " : "") + "columna nuevamente: ");
-            }
-            return Console.ReadKey().KeyChar.ToString();
-        }
-
-        static private bool endGame(int winner, Board board)
-        {
-            Console.WriteLine(board.getStringBoard());
-            Console.Write((winner == 1 ? "Has perdido." : "Has ganado.") + "\nDesea jugar nuevamente (Y/N):");
-            return Console.ReadKey().KeyChar.ToString().ToUpper() != "Y";
         }
 
     }

@@ -84,6 +84,15 @@ namespace connect_4_ai.Model
             }
         }
 
+        public bool hasSpace()
+        {
+            for (int col=0; col<columns; col++)
+            {
+                if (boardMatrix[col, 0] == 0) { return true; }
+            }
+            return false;
+        }
+
         public bool colHasSpace(int col)
         {
             for (int row = rows - 1; row >= 0; row--)
@@ -96,6 +105,131 @@ namespace connect_4_ai.Model
         public Board clone()
         {
             return new Board(columns, rows, boardMatrix);
+        }
+
+
+        //Board Status
+        public int getStatus()
+        {
+            int winner;
+
+            winner = horizontalWin();
+            if (winner != 0) { return winner; }
+
+            winner = verticalWin();
+            if (winner != 0) { return winner; }
+
+            winner = oblicousAscWin();
+            if (winner != 0) { return winner; }
+
+            winner = oblicousDescWin();
+            if (winner != 0) { return winner; }
+
+            return 0;
+        }
+
+        private int horizontalWin()
+        {
+            int countNext;
+            int lastVal;
+            for (int row = 0; row < rows; row++)
+            {
+                countNext = 0;
+                lastVal = getVal(0, row);
+                for (int col = 1; col < columns; col++)
+                {
+                    if (lastVal == getVal(col, row) && lastVal != 0) { countNext++; }
+                    else { countNext = 0; }
+                    lastVal = getVal(col, row);
+                    if (countNext == 3) return lastVal;
+                }
+            }
+            return 0;
+        }
+
+        private int verticalWin()
+        {
+            int countNext;
+            int lastVal;
+            for (int col = 0; col < columns; col++)
+            {
+                countNext = 0;
+                lastVal = getVal(col, 0);
+                for (int row = 1; row < rows; row++)
+                {
+                    if (lastVal == getVal(col, row) && lastVal != 0) { countNext++; }
+                    else { countNext = 0; }
+                    lastVal = getVal(col, row);
+                    if (countNext == 3) return lastVal;
+                }
+            }
+            return 0;
+        }
+
+        private int oblicousAscWin()
+        {
+            int countNext = 0;
+            int oblicousLines = columns + rows - 1;
+            int repetitionMaxOffset = Math.Abs(columns - rows);
+            int col, row, startRow = 0, startCol = 0, maxOffset = 0, indexRepetitionMax = 0;
+            for (int line = 3; line < oblicousLines - 3; line++)
+            {
+                if (line < rows) { startRow = line; }
+                else { startCol++; }
+                int lastVal = getVal(startCol, startRow);
+
+                if (line < Math.Min(columns, rows)) { maxOffset = line; }
+                else if (indexRepetitionMax < repetitionMaxOffset) { indexRepetitionMax++; }
+                else { maxOffset--; }
+
+                countNext = 0;
+                for (int offset = 1; offset <= maxOffset; offset++)
+                {
+                    col = startCol + offset;
+                    row = startRow - offset;
+                    if (lastVal == getVal(col, row) && lastVal != 0)
+                    {
+                        countNext++;
+                    }
+                    else { countNext = 0; }
+                    lastVal = getVal(col, row);
+                    if (countNext == 3) return lastVal;
+                }
+            }
+            return 0;
+        }
+
+        private int oblicousDescWin()
+        {
+            int countNext = 0;
+            int oblicousLines = columns + rows - 1;
+            int repetitionMaxOffset = Math.Abs(columns - rows);
+            int col, row, startRow = rows - 1, startCol = 0, maxOffset = 0, indexRepetitionMax = 0;
+            for (int line = 3; line < oblicousLines - 3; line++)
+            {
+                if (line < columns) { startCol = line; }
+                else { startRow--; }
+                int lastVal = getVal(startCol, startRow);
+
+                if (line < Math.Min(columns, rows)) { maxOffset = line; }
+                else if (indexRepetitionMax < repetitionMaxOffset) { indexRepetitionMax++; }
+                else { maxOffset--; }
+
+                countNext = 0;
+                for (int offset = 1; offset <= maxOffset; offset++)
+                {
+                    col = startCol - offset;
+                    row = startRow - offset;
+                    if (lastVal == getVal(col, row) && lastVal != 0)
+                    {
+                        countNext++;
+                    }
+                    else { countNext = 0; }
+                    lastVal = getVal(col, row);
+                    if (countNext == 3) return lastVal;
+                }
+            }
+            return 0;
         }
 
     }

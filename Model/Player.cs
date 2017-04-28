@@ -9,5 +9,9 @@ namespace connect_4_ai.Model
     interface Player
     {
         int getSelectedCol(Board board);
+        int getPlayerNum();
+        void setPlayerNum(int playerNum);
     }
+
+
 }
