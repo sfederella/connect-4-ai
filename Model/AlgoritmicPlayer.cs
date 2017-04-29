@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,15 +9,19 @@ namespace connect_4_ai.Model
 {
     class AlgoritmicPlayer : Player
     {
-        double[] scores;
-        int playerNum;
-        int maxDepth;
+        private double[] scores;
+        private int playerNum;
+        private int maxDepth;
+        private string resultsPath;
 
-        public AlgoritmicPlayer(int maxDepth)
+        public AlgoritmicPlayer(int maxDepth, string resultsPath)
         {
             this.maxDepth = maxDepth;
+            this.resultsPath = resultsPath;
             playerNum = 1;
         }
+
+        public AlgoritmicPlayer(int maxDepth) : this(maxDepth,"") {}
 
         public int getPlayerNum()
         {
@@ -28,13 +33,18 @@ namespace connect_4_ai.Model
             this.playerNum = playerNum;
         }
 
-        public int getSelectedCol(Board board)
+        public virtual int getSelectedCol(Board board)
         {
             Console.Write("Pensando...");
             scores = new double[board.columns];
             for(var i=0; i< scores.Length; i++) { scores[i] = 0; }
             rateColumns(board);
-            return getBestRatedCol();
+            int selectedCol = getBestRatedCol();
+            if (resultsPath != "")
+            {
+                saveResult(board, selectedCol);
+            }
+            return selectedCol;
         }
 
         private int getBestRatedCol()
@@ -54,6 +64,16 @@ namespace connect_4_ai.Model
             } else
             {
                 return maxIndexes[new Random().Next(0, maxIndexes.Count)];
+            }
+        }
+
+        private void saveResult(Board board, int selectedCol)
+        {
+            using (var w = new StreamWriter(resultsPath, true))
+            {
+                string line = board.getCSV(this) + "," + selectedCol;
+                w.WriteLine(line);
+                w.Flush();
             }
         }
 

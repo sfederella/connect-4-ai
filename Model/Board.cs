@@ -83,12 +83,12 @@ namespace connect_4_ai.Model
             return csv.Substring(1);
         } 
 
-        public void selectColumn(int col, int player)
+        public void selectColumn(int col, int playerNum)
         {
             for (int row = rows-1; row >= 0; row--) {
                 if(boardMatrix[col,row] == 0)
                 {
-                    boardMatrix[col, row] = player;
+                    boardMatrix[col, row] = playerNum;
                     break;
                 }
                 if (row == 0)
