@@ -52,7 +52,39 @@ Siguiendo el ejemplo anterior, si el experto determina que la mejor jugada es la
 
 `0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, -1, 0, 0, 0, 0, -1, -1, 1, 0, 0, 0, 0, -1, 1, -1, 0, 0, 0, 1, -1, -1, 1, 0, 3`
 
+Utilizando un jugador automatizado con una estrategia defensiva de juego y haciéndolo jugar contra sí mismo con un parámetro de aleatoriedad de jugadas, generamos el dataset con el cual entrenaremos a la RNA.
+
+A este dataset le aplicamos un filtro posterior, removiendo jugadas duplicadas y contradictorias.
+
+## Implementación
+
+Para implementar la RNA y correr los experimentos, utilizaremos *Azure Machine Learning*.
+
+## Experimentos
+
+#### Parámetros
+
+* 80% del dataset utilizado para entrenar la RNA, 20% utilizado para la comprobación
+* RNA multicapa back propagation
+* 1 capa de entrada con 42 neuronas
+* 1 capa oculta
+* 1 capa de salida con 7 neuronas
+* 0,1 como coeficiente de entrenamiento
+* Función gausianna
+
+#### Resultados
+
+​| Neuronas en capa oculta | Iteraciones | Tiempo de corrida (segundos) | Exactitud del modelo
+--- | --- | --- | --- | --- 
+E1 | 100 | 100 | 23 | 0,458738
+E2 | 100 | 1000 | 27 | 0,446602
+E3 | 100 | 30000 | 226 | 0,429612
+E4 | 1000 | 1000 | 54 | 0,514563
+E5 | 10000 | 100 | 64 | 0,512136
+
 ### Referencias
 
 * [4 en Línea](https://es.wikipedia.org/wiki/Conecta_4)
 * [CSV](https://tools.ietf.org/html/rfc4180)
+* [Azure Machine Learning](https://docs.microsoft.com/es-es/azure/machine-learning/machine-learning-create-experiment)
+* [Net#](https://docs.microsoft.com/es-es/azure/machine-learning/machine-learning-azure-ml-netsharp-reference-guide)
