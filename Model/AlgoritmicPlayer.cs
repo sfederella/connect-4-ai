@@ -42,7 +42,7 @@ namespace connect_4_ai.Model
             int selectedCol = getBestRatedCol();
             if (resultsPath != "")
             {
-                saveResult(board, selectedCol);
+                saveResult(board, selectedCol+1);
             }
             return selectedCol;
         }
