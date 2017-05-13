@@ -58,13 +58,7 @@ namespace connect_4_ai.Model
                     maxIndexes.Add(i);
                 }
             }
-            if(maxIndexes.Count == 1)
-            {
-                return maxIndexes[0];
-            } else
-            {
-                return maxIndexes[new Random().Next(0, maxIndexes.Count)];
-            }
+            return maxIndexes[0];
         }
 
         private void saveResult(Board board, int selectedCol)

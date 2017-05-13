@@ -26,7 +26,7 @@ namespace connect_4_ai
         static int numGames = 1000;
 
         // Path of the CSV file where the results will be saved
-        static string datasetPath = "C:/Users/Santi/UTN/Inteligecia Artificial/connect-4-ai/Datasets/dataset1000.csv";
+        static string datasetPath = "C:/Users/Santi/UTN/Inteligecia Artificial/connect-4-ai/Datasets/dataset1000555.csv";
 
         /* ---- Program ---- */
         static void Main(string[] args)
