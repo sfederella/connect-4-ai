@@ -71,7 +71,18 @@ Para implementar la RNA y correr los experimentos, utilizaremos *Azure Machine L
 * 0,1 como coeficiente de entrenamiento
 * Función gausianna
 
-#### Resultados
+#### Resultados con dataset no determinístico
+ 
+ ​| Neuronas en capa oculta | Iteraciones | Tiempo de corrida (segundos) | Exactitud del modelo
+ --- | --- | --- | --- | --- 
+ E1 | 100 | 100 | 23 | 0,458738
+ E2 | 100 | 1000 | 27 | 0,446602
+ E3 | 100 | 30000 | 226 | 0,429612
+ E4 | 1000 | 1000 | 54 | 0,514563
+ E5 | 10000 | 100 | 64 | 0,512136
+ 
+
+#### Resultados con dataset determinístico
 
 ​| Neuronas en capa oculta 1 |  Neuronas en capa oculta 2 | Iteraciones | Tiempo de entrenamiento (segundos) | Exactitud del modelo
 --- | --- | --- | --- | --- | --- 
