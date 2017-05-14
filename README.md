@@ -62,25 +62,34 @@ Para implementar la RNA y correr los experimentos, utilizaremos *Azure Machine L
 
 ## Experimentos
 
-#### Parámetros
+#### Parámetros Fijos
 
 * 80% del dataset utilizado para entrenar la RNA, 20% utilizado para la comprobación
 * RNA multicapa back propagation
 * 1 capa de entrada con 42 neuronas
-* 1 capa oculta
 * 1 capa de salida con 7 neuronas
 * 0,1 como coeficiente de entrenamiento
 * Función gausianna
 
 #### Resultados
 
-​| Neuronas en capa oculta | Iteraciones | Tiempo de corrida (segundos) | Exactitud del modelo
+​| Neuronas en capa oculta 1 |  Neuronas en capa oculta 2 | Iteraciones | Tiempo de entrenamiento (segundos) | Exactitud del modelo
 --- | --- | --- | --- | --- 
-E1 | 100 | 100 | 23 | 0,458738
-E2 | 100 | 1000 | 27 | 0,446602
-E3 | 100 | 30000 | 226 | 0,429612
-E4 | 1000 | 1000 | 54 | 0,514563
-E5 | 10000 | 100 | 64 | 0,512136
+E1 | 100 | - | 100 | PENDIENTE | PENDIENTE
+E2 | 100 | - | 1000 | PENDIENTE | PENDIENTE
+E3 | 100 | - | 10000 | PENDIENTE | PENDIENTE
+E4 | 1764 | - | 100 | 1 | 0,482998
+E5 | 1764 | - | 1000 | 1 | 0,469088
+E6 | 1764 | - | 10000 | 2262 | 0,472952
+E7 | 74088 | - | 100 | 1037 | 0,452087
+E8 | 74088 | - | 1000 | PENDIENTE | PENDIENTE
+E9 | 100 | 100 | 100 | PENDIENTE | PENDIENTE
+E9 | 100 | 100 | 1000 | PENDIENTE | PENDIENTE
+E9 | 100 | 100 | 10000 | 1007 | 0,412674
+E10 | 1000 | 1000 | 100 | PENDIENTE| PENDIENTE
+E10 | 1000 | 1000 | 1000 | 2292 | 0,491499
+E11 | 1000 | 1000 | 2500 | 6671 | 0,502318
+E12 | 1000 | 1000 | 10000 | 27749 | 0.49459
 
 ### Referencias
 
