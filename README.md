@@ -62,25 +62,39 @@ Para implementar la RNA y correr los experimentos, utilizaremos *Azure Machine L
 
 ## Experimentos
 
-#### Parámetros
+#### Parámetros Fijos
 
 * 80% del dataset utilizado para entrenar la RNA, 20% utilizado para la comprobación
 * RNA multicapa back propagation
 * 1 capa de entrada con 42 neuronas
-* 1 capa oculta
 * 1 capa de salida con 7 neuronas
 * 0,1 como coeficiente de entrenamiento
 * Función gausianna
 
 #### Resultados
 
-​| Neuronas en capa oculta | Iteraciones | Tiempo de corrida (segundos) | Exactitud del modelo
---- | --- | --- | --- | --- 
-E1 | 100 | 100 | 23 | 0,458738
-E2 | 100 | 1000 | 27 | 0,446602
-E3 | 100 | 30000 | 226 | 0,429612
-E4 | 1000 | 1000 | 54 | 0,514563
-E5 | 10000 | 100 | 64 | 0,512136
+​| Neuronas en capa oculta 1 |  Neuronas en capa oculta 2 | Iteraciones | Tiempo de entrenamiento (segundos) | Exactitud del modelo
+--- | --- | --- | --- | --- | --- 
+E1 | 100 | - | 100 | 1 | 0,443586
+E2 | 100 | - | 1000 | 1 | 0,42272
+E3 | 100 | - | 10000 | 493 | 0.425811
+E4 | 1764 | - | 100 | 1 | 0,482998
+E5 | 1764 | - | 1000 | 1 | 0,469088
+E6 | 1764 | - | 10000 | 2262 | 0,472952
+E7 | 74088 | - | 100 | 1037 | 0,452087
+E8 | 74088 | - | 1000 | PENDIENTE | PENDIENTE
+E9 | 100 | 100 | 100 | 7 | 0.417311
+E10 | 100 | 100 | 1000 | 95 | 0.412674
+E11 | 100 | 100 | 10000 | 1007 | 0,412674
+E12 | 1000 | 1000 | 100 | 271| 0.493818
+E13 | 1000 | 1000 | 1000 | 2292 | 0,491499
+E14 | 1000 | 1000 | 2500 | 6671 | 0,502318
+E15 | 1000 | 1000 | 10000 | 27749 | 0.49459
+E16 | 42 | 21 | 1000 | 36 | 0.315301
+E17 | 84 | 168 | 1000 | 86 | 0.38949
+E18 | 168 | 84 | 1000 | 71 | 0.431221
+E19 | 336 | 84 | 1000 | 125 | 0.453632
+E20 | 336 | 168 | 1000 | 180 | 0.471406
 
 ### Referencias
 
