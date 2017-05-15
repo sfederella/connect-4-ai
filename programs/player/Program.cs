@@ -31,8 +31,8 @@ namespace connect_4_ai
         /* ---- Program ---- */
         static void Main(string[] args)
         {
-            Player player1 = new StupidAlgoritmicPlayer(6, datasetPath, 0.25);
-            Player player2 = new StupidAlgoritmicPlayer(6, datasetPath, 0.25);
+            Player player1 = new RandomAlgoritmicPlayer(6, datasetPath, 0.25);
+            Player player2 = new RandomAlgoritmicPlayer(6, datasetPath, 0.25);
             Players players = new Players(player1, player2);
             Game game = new Game(board, players);
             Console.WriteLine(board.getStringBoard());
